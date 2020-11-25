@@ -1,0 +1,81 @@
+CREATE TABLE user(
+    uid VARCHAR(10),
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    password VARCHAR(30) NOT NULL,
+    PRIMARY KEY (uid));
+
+CREATE TABLE question(
+    qid VARCHAR(10),
+    space VARCHAR(20) NOT NULL,
+    title VARCHAR(300) NOT NULL,
+    content VARCHAR(2000),
+    time DATE NOT NULL,
+    creatorid VARCHAR(10) NOT NULL,
+    PRIMARY KEY (qid),
+    FOREIGN KEY (creatorid) REFERENCES user(uid));
+
+CREATE TABLE answer(
+    aid VARCHAR(10),
+    qid VARCHAR(10),
+    content VARCHAR(2000) NOT NULL,
+    uid VARCHAR(10) NOT NULL,
+    time DATE NOT NULL,
+    PRIMARY KEY (aid, qid),
+    FOREIGN KEY (uid) REFERENCES user(uid),
+    FOREIGN KEY (qid) REFERENCES question(qid) ON DELETE CASCADE);
+
+CREATE TABLE up(qid VARCHAR(10), uid VARCHAR(10),
+    PRIMARY KEY (qid,uid),
+    FOREIGN KEY (uid) REFERENCES user(uid) ON DELETE CASCADE,
+    FOREIGN KEY (qid) REFERENCES question(qid) ON DELETE CASCADE);
+
+INSERT INTO `user` (`uid`, `name`, `email`, `password`)
+VALUES
+("1", "Andy", "andy@test.hk", "pwd"),
+("2", "Bob", "bob@test.hk", "pwd"),
+("3", "Cindy", "cindy@test.hk", "pwd");
+
+INSERT INTO `question` (`qid`, `space`, `title`, `content`, `time`, `creatorid`)
+VALUES
+("1", "Javascript", "What is the difference between Java and Javascript",
+"I am a newbie in programming, and I would like to know what is the difference between Java and Javascript",
+"2020-10-11", "1"),
+("2", "Machine Learning", "How to learn Machine Learning",
+"This is a test problem in the space Machine Learning",
+"2020-10-10", "2"),
+("3", "Algorithm", "How to learn Algorithm",
+"I am wondering where I can find the resource to learn the algorithms",
+"2020-10-09", "3");
+
+INSERT INTO `up` (`qid`, `uid`)
+VALUES
+("1", "2"),
+("1", "3"),
+("2", "1"),
+("2", "3"),
+("3", "1"),
+("3", "2");
+
+INSERT INTO `answer` (`aid`, `qid`, `content`, `uid`, `time`)
+VALUES
+("1", "1", "1. JavaScript is used for Front End development while
+java is used for Back End Development; 2. Java Script is
+dynamically typed language and Java is Statically typed
+language; 3. Java Script is a scripting language while Java
+is a programming language; 4. Java and JavaScript are very
+different in their SYNTAX; 5. Both languages are Object
+Oriented but JavaScript is a Partial Object Oriented
+Language while Java is a fully Object Oriented Langauge.",
+"2", "2020-10-12"),
+("2", "1", "They share some letters and they are both computer
+languages, just about everything else is different.",
+"3", "2020-10-11"),
+("1", "2", "Stage 1: Get your math in place. Stage 2: Programming.
+Stage 3: Learn Machine Learning tools: You will have to
+learn certain common topics to build from. They are:
+Regression techniques. SVM. Classification Techniques.
+Clustering Techniques. Neural Nets. Decision making
+algorithms. Optimization Techniques. Stage 4: Build After
+you have learnt the tools. It is time you build something.",
+"1", "2020-10-15");
