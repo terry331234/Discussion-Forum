@@ -1,3 +1,4 @@
+CREATE DATABASE `project`;
 CREATE TABLE user(
     uid VARCHAR(10),
     name VARCHAR(50) NOT NULL,

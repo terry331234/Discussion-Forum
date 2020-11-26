@@ -1,0 +1,42 @@
+body {
+    max-width: 1500px;
+    margin: auto;
+    font-family: sans-serif;
+}
+
+#navbar {
+    display: flex;
+    background-color: aqua;
+    position: sticky;
+    top: 0;
+}
+
+#navbar a {
+    margin-right: 2em;
+    margin-left: 2em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+#navbar #account {
+    display: flex;
+}
+
+#navbar #logo {
+    margin-left: 5px;
+}
+
+#navbar input {
+    display: block;
+    height: 1em;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#navbar #account {
+    margin-left: auto;
+}
+
+.pl-1em {
+    padding-left: 1em;
+}
