@@ -1,12 +1,19 @@
 <?php
 /*
-Take query parameters order, space, title, qid
-Return array of questions in json
-Each question has values:
-    qid, name, space, title, content, time, upCount, ansCount, upvoted
-Result ordered by time by default
+GET:
+    Take query parameters order, space, title, qid
+    Return array of questions in json
+    Each question has values:
+        qid, name, space, title, content, time, upCount, ansCount, upvoted
+    Result ordered by time by default
+
+POST:
+    Take parameters uid, qid, action('add'/'del')
+    add/delete upvote from uid for qid
+    Return 'ok' if success, else return 'error'
 */
     require_once "db.php";
+    //ini_set('display_errors', 0);
 
     if ($_GET) {
         $db = getdb();
@@ -58,10 +65,38 @@ Result ordered by time by default
         $json = json_encode($questionArray);
         header('Content-Type: application/json');
         echo $json;
-    } else {
+    } elseif ($_POST) {
+        if ($_POST['uid'] && $_POST['qid'] && $_POST['action']) {
+            $uid = $_POST['uid'];
+            $qid = $_POST['qid'];
+
+            if ($_POST['action'] == 'add') {
+                $query = "INSERT INTO up VALUE ('{$uid}', '{$qid}');";
+            } elseif ($_POST['action'] == 'del') {
+                $query = "DELETE FROM up WHERE uid='{$uid}' AND qid='{$qid}';";
+            } else {
+                header("HTTP/1.0 404 Not Found");
+                echo "Wrong parameters";
+                die();
+            }
+            $db = getdb();
+            $return = 'not found';
+            $result = $db->query($query);
+            if ($result) {
+                header('Content-Type: text/plain');
+                echo 'ok';
+            } else {
+                echo 'error';
+            }
+            $db->close();
+        } else {
+            header("HTTP/1.0 404 Not Found");
+            echo "Missing parameters";
+        }
+    } 
+    else {
         header("HTTP/1.0 404 Not Found");
         echo "Please specify parameters";
-        die();
     }
 ?>
 

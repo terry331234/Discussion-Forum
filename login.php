@@ -5,7 +5,6 @@
 
   if($_POST['email']) {
     require_once "user.php";
-    //ini_set('display_errors', 0);
 
     $email = $_POST['email'];
     $uid = getUid($email);
