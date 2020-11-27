@@ -25,19 +25,15 @@
     </aside>
     <main>
     <?php
-    require_once "db.php";
     if (isset($_COOKIE["uid"])) {
-        $db = getdb();
-        $result = $db->query("SELECT name FROM user WHERE uid={$_COOKIE["uid"]}");
-        $row = $result->fetch_object();
+        require_once "user.php";
+        $name = getUsername($_COOKIE["uid"]);
         echo "<button id='ask'>Ask Question</button>";
         echo "
         <div class='question card'>
-            <h4 class='user'>{$row->name}</h4>
+            <h4 class='user'>{$name}</h4>
             <p>What is your question?</p>
         </div>";
-        $result->free_result();
-        $db->close();
     }
     ?>
     <div id='questions'></div>

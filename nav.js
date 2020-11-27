@@ -10,5 +10,5 @@ if (nav.dataset.loggedin == 'true') {
    navAccount.innerHTML = "<a href='logout.php'>Log Out</a>";
 } else {
    navAccount.innerHTML = "<a href='login.php'>Log In</a>\
-                           <a>Register</a>";
+                           <a href='register.php'>Register</a>";
 }

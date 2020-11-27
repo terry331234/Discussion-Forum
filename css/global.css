@@ -10,9 +10,9 @@ body {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
 }
 
-.m-auto-w50 {
-    margin: auto;
-    width: 50%;
+.card h1 {
+    margin: 0;
+    padding: 1em 0 1em 0;
 }
 
 nav {
@@ -27,6 +27,8 @@ nav a {
     margin-left: 2em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
+    text-decoration-line: none;
+    color: black;
 }
 
 nav #navAccount {
@@ -52,11 +54,55 @@ nav #navAccount {
     padding-left: 1em;
 }
 
+.center-text {
+    text-align: center;
+}
+
+.align-viewport-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.center-box {
+    width: 60%;
+    margin: auto;
+}
+
+form {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.input-group {
+    display: flex;
+    margin-top: 0.5em;
+}
+
+.input-group label {
+    padding-right: 1em;
+    margin-left: auto;
+}
+
 .button, button {
+    color: black;
+    text-decoration-line: none;
     cursor: pointer;
     background-color: aqua;
     border: 0;
     border-radius: 5px;
-    height: 2em;
     margin: 0.5em;
+    padding: 0.5em;
+}
+
+.submit {
+    margin-top: 2em;
+}
+
+.error {
+    color: red;
+    padding: 0.5em;
 }

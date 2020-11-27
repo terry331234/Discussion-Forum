@@ -4,26 +4,20 @@
   }
 
   if($_POST['email']) {
-    $email = $_POST['email'];
+    require_once "user.php";
     //ini_set('display_errors', 0);
-    $db = new mysqli('db', 'root', '331234', 'project');
-    if ($db->connect_errno) {
-      die("Failed to connect to database: (" . $db->connect_errno . ") " . $db->connect_error);
-    }
-    $result = $db->query("SELECT uid, name, password FROM user where email='{$_POST['email']}';");
-    if(!$result->num_rows) {
+
+    $email = $_POST['email'];
+    $uid = getUid($email);
+    if(!$uid) {
       $msg = "User is not registered";
     } else {
-      $row = $result->fetch_array();
-      if ($row['password'] === "{$_POST['password']}") {
-        setcookie("uid", "{$row['uid']}", time()+3600);
+      if ( login($uid, $_POST['password']) ) {
         header('Location: index.php');
       } else {
         $msg = "Unauthorized access";
       }
     }
-    $result->free_result();
-    $db->close();
   }
 ?>
 <!DOCTYPE html>
@@ -37,25 +31,27 @@
 <style>
 
 </style>
-<body>
-  <div class="login card m-auto-w50">
-    <h1 id="login">Login</h1>
-    <form action="" method="POST">
-    <div class="input-group">
-      <label for="email">Email</label>
-      <input type="text" id="email" name="email" value="<?php echo $email; ?>" autofocus required>
+<body class="center-text align-viewport-center">
+  <div class="center-box">
+    <div class="card">
+      <h1>Login</h1>
+      <form action="" method="POST" class="align-center">
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="text" id="email" name="email" value="<?php echo $email; ?>" pattern="^.+@.+\.+.+"  autofocus required>
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <button class="submit" type="submit" id="loginButton">Log In</button>
+      </form>
+      <div class="error">
+        <?php echo $msg; ?>
+      </div>
     </div>
-    <div class="input-group">
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" required>
-    </div>
-    <button type="submit" id="loginButton">Log In</button>
-    </form>
-    <p class="error">
-      <?php echo $msg; ?>
-    </p>
+    <p>Do not have an account?</p>
+    <a href='register.php' class="button">Register</a>
   </div>
-  <p>Do not have an account?</p>
-  <a>Register</a>
 </body>
 </html>
