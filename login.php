@@ -38,7 +38,7 @@
 
 </style>
 <body>
-  <div class="login card">
+  <div class="login card m-auto-w50">
     <h1 id="login">Login</h1>
     <form action="" method="POST">
     <div class="input-group">

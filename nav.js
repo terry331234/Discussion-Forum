@@ -1,10 +1,14 @@
-var nav = document.getElementById("navbar");
-nav.innerHTML = "<a id='logo'>Logo</a>\
-                 <a>Home</a>\
-                 <a>Hot</a>\
+var nav = document.getElementsByTagName('nav')[0];
+nav.innerHTML = "<a id='logo' href='index.php'>Logo</a>\
+                 <a href='index.php'>Home</a>\
+                 <a id='hot'>Hot</a>\
                  <input id='search'></input>\
-                 <div id='account'>\
-                    <a href='login.php'>Log In</a>\
-                    <a href='logout.php'>Log Out</a>\
-                    <a>Register</a>\
+                 <div id='navAccount'>\
                  </div>";
+var navAccount = document.getElementById("navAccount");
+if (nav.dataset.loggedin == 'true') {
+   navAccount.innerHTML = "<a href='logout.php'>Log Out</a>";
+} else {
+   navAccount.innerHTML = "<a href='login.php'>Log In</a>\
+                           <a>Register</a>";
+}
