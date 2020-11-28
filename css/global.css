@@ -2,6 +2,7 @@ body {
     max-width: 1500px;
     margin: auto;
     font-family: sans-serif;
+    background-color: lightgray;
 }
 
 .card {
@@ -22,13 +23,17 @@ nav {
     top: 0;
 }
 
+a {
+    cursor: pointer;
+    text-decoration-line: none;
+    color: black;
+}
+
 nav a {
     margin-right: 2em;
     margin-left: 2em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    text-decoration-line: none;
-    color: black;
 }
 
 nav #navAccount {
@@ -46,12 +51,20 @@ nav input {
     margin-bottom: auto;
 }
 
-nav #navAccount {
+.ml-auto {
     margin-left: auto;
 }
 
 .pl-1em {
     padding-left: 1em;
+}
+
+.float-l {
+    float: left;
+}
+
+.float-r {
+    float: right;
 }
 
 .center-text {
@@ -87,6 +100,26 @@ form {
     margin-left: auto;
 }
 
+.question {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding: 0.5em;
+}
+
+.questions {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.space {
+    font-weight: bold;
+    border: 2px solid aqua;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+
 .button, button {
     color: black;
     text-decoration-line: none;
@@ -100,6 +133,10 @@ form {
 
 .submit {
     margin-top: 2em;
+}
+
+.upvoted {
+    color: red;
 }
 
 .error {

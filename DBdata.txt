@@ -11,7 +11,7 @@ CREATE TABLE question(
     qid INT AUTO_INCREMENT,
     space VARCHAR(20) NOT NULL,
     title VARCHAR(300) NOT NULL,
-    content VARCHAR(2000),
+    content VARCHAR(2000) NOT NULL,
     time DATE NOT NULL,
     creatorid INT NOT NULL,
     PRIMARY KEY (qid),
@@ -66,23 +66,9 @@ VALUES
 
 INSERT INTO `answer` (`aid`, `qid`, `content`, `uid`, `time`)
 VALUES
-("1", "1", "1. JavaScript is used for Front End development while
-java is used for Back End Development; 2. Java Script is
-dynamically typed language and Java is Statically typed
-language; 3. Java Script is a scripting language while Java
-is a programming language; 4. Java and JavaScript are very
-different in their SYNTAX; 5. Both languages are Object
-Oriented but JavaScript is a Partial Object Oriented
-Language while Java is a fully Object Oriented Langauge.",
+("1", "1", "1. JavaScript is used for Front End development while java is used for Back End Development; 2. Java Script is dynamically typed language and Java is Statically typed language; 3. Java Script is a scripting language while Java is a programming language; 4. Java and JavaScript are very different in their SYNTAX; 5. Both languages are Object Oriented but JavaScript is a Partial Object Oriented Language while Java is a fully Object Oriented Langauge.",
 "2", "2020-10-12"),
-("2", "1", "They share some letters and they are both computer
-languages, just about everything else is different.",
+("2", "1", "They share some letters and they are both computer languages, just about everything else is different.",
 "3", "2020-10-11"),
-("1", "2", "Stage 1: Get your math in place. Stage 2: Programming.
-Stage 3: Learn Machine Learning tools: You will have to
-learn certain common topics to build from. They are:
-Regression techniques. SVM. Classification Techniques.
-Clustering Techniques. Neural Nets. Decision making
-algorithms. Optimization Techniques. Stage 4: Build After
-you have learnt the tools. It is time you build something.",
+("1", "2", "Stage 1: Get your math in place. Stage 2: Programming. Stage 3: Learn Machine Learning tools: You will have to learn certain common topics to build from. They are: Regression techniques. SVM. Classification Techniques. Clustering Techniques. Neural Nets. Decision making algorithms. Optimization Techniques. Stage 4: Build After you have learnt the tools. It is time you build something.",
 "1", "2020-10-15");

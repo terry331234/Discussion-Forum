@@ -26,20 +26,57 @@ function renderQuestions(questions) {
         let question = document.createElement('div');
         question.classList.add("question", "card");
         question.setAttribute("data-qid", q.qid);
-        question.innerHTML = `<button class='space'>${q.space}</button><br>\
-                              Posted By <span>${q.name}</span> on <span>${q.time}</span>\
-                              <h4>${q.title}</h4>\
+        question.innerHTML = `<h4 class='space'>${q.space}</h4>\
+                              <span>Posted By <strong>${q.name}</strong> on <strong>${q.time}</strong></span>\
+                              <h4><a href='detail.php?qid=${q.qid}'>${q.title}</a></h4>\
                               <p>${q.content}</p>\
-                              <span id="upvote" class='pl-1em${upvoted}'>Upvote ${q.upCount}</span><span class='pl-1em'>Answers ${q.ansCount}</span>`
+                              <span class='upvote pl-1em${upvoted}' data-qid='${q.qid}'>Upvote <span>${q.upCount}</span></span><span class='pl-1em'>Answers ${q.ansCount}</span>`
         questionsDiv.append(question);
-        //console.log(question.dataset.qid);
+    }
+    //if logged in
+    if (document.querySelector('#user')) {
+        let upvotes = document.querySelectorAll('.upvote');
+        for (up of upvotes) {
+            up.style.cursor = 'pointer';
+            up.addEventListener('click', (e) => {
+                let upvote = e.target;
+                let action;
+                let offset;
+                if (upvote.classList.contains('upvoted')) {
+                    action = 'del';
+                    offset = -1;
+                } else {
+                    action = 'add';
+                    offset = 1;
+                }
+
+                fetch('questions.php', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `qid=${upvote.dataset.qid}&action=${action}`,
+                  }).then( response => {
+                    if (!response.ok) {
+                        alert("Failed to record upvote change!Try reloading the page.");
+                        throw new Error(`Failed to record upvote change! Reqeust returned ${response.status} ${response.statusText}`);
+                    } else {
+                        let countText = upvote.firstElementChild;
+                        let currentCount = parseInt(countText.innerHTML);
+                        currentCount += offset;
+                        countText.innerHTML = currentCount;
+                        upvote.classList.toggle('upvoted');
+                    }
+                  });
+            });
+        }
     }
 }
 
 var currentSpace;
 var currentSearchWord;
 var currentOrder = 'time';
-var spaces = document.getElementsByClassName('space');
+var spaces = document.querySelectorAll('aside div');
 
 for (s of spaces) {
     s.addEventListener('click', (event) => {

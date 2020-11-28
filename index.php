@@ -18,20 +18,20 @@
     }
     ?>
     <aside>
-        <div class="space" data-space="Algorithm">Algorithm</div>
-        <div class="space" data-space="Machine Learning">Machine Learning</div>
-        <div class="space" data-space="System">System</div>
-        <div class="space" data-space="JavaScript">JavaScript</div>
+        <div data-space="Algorithm">Algorithm</div>
+        <div data-space="Machine Learning">Machine Learning</div>
+        <div data-space="System">System</div>
+        <div data-space="JavaScript">JavaScript</div>
     </aside>
-    <main>
+    <main class='questions'>
     <?php
     if (isset($_COOKIE["uid"])) {
         require_once "user.php";
         $name = getUsername($_COOKIE["uid"]);
-        echo "<button id='ask'>Ask Question</button>";
+        echo "<a id='askButton' class='button' href='ask.php'>Ask Question</a>";
         echo "
         <div class='question card'>
-            <h4 class='user'>{$name}</h4>
+            <h4 id='user'>{$name}</h4>
             <p>What is your question?</p>
         </div>";
     }

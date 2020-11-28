@@ -3,7 +3,7 @@ nav.innerHTML = "<a id='logo' href='index.php'>Logo</a>\
                  <a href='index.php'>Home</a>\
                  <a id='hot'>Hot</a>\
                  <input id='search'></input>\
-                 <div id='navAccount'>\
+                 <div id='navAccount' class='ml-auto'>\
                  </div>";
 var navAccount = document.getElementById("navAccount");
 if (nav.dataset.loggedin == 'true') {
