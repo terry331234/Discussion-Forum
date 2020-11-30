@@ -1,3 +1,5 @@
+import {getAnswers, renderAnswers} from './answers.js';
+
 function getQuestions(order, space, title) {
     let params = new URLSearchParams();
     if(order) {
@@ -20,23 +22,37 @@ function getQuestions(order, space, title) {
 function renderQuestions(questions) {
     let questionsDiv = document.getElementById('questions');
     questionsDiv.innerHTML = '';
-    for (q of questions) {
+    for (let q of questions) {
         if (q.upvoted) {var upvoted=' upvoted';}
         else {var upvoted='';}
         let question = document.createElement('div');
         question.classList.add("question", "card");
         question.setAttribute("data-qid", q.qid);
+        question.setAttribute("data-uid", q.creatorid);
         question.innerHTML = `<h4 class='space'>${q.space}</h4>\
-                              <span>Posted By <strong>${q.name}</strong> on <strong>${q.time}</strong></span>\
+                              <span class='info'>Posted By <strong>${q.name}</strong> on <strong>${q.time}</strong></span>\
                               <h4><a href='detail.php?qid=${q.qid}'>${q.title}</a></h4>\
+                              <input type="checkbox" id="showmore${q.qid}" class="hidden">
                               <p>${q.content}</p>\
-                              <span class='upvote pl-1em${upvoted}' data-qid='${q.qid}'>Upvote <span>${q.upCount}</span></span><span class='pl-1em'>Answers ${q.ansCount}</span>`
+                              <div class='container'><label for="showmore${q.qid}" role="button" class="inlineRight">read more</label></div>\
+                              <span class='upvote pl-1em${upvoted}' data-qid='${q.qid}'>Upvote <span>${q.upCount}</span></span><span class='pl-1em answerCount'>Answers ${q.ansCount}</span>`;
+
+        question.setAttribute('data-anscount', q.ansCount);
         questionsDiv.append(question);
     }
+
+    //if not overflow, hide showmore button
+    $('.question p').each(function() {
+        if(!(this.offsetHeight < this.scrollHeight)){
+            $(this).next().hide();
+        }
+    });
+
     //if logged in
-    if (document.querySelector('#user')) {
+    var loggedin = document.body.dataset.loggedin;
+    if (loggedin == 'true') {
         let upvotes = document.querySelectorAll('.upvote');
-        for (up of upvotes) {
+        for (let up of upvotes) {
             up.style.cursor = 'pointer';
             up.addEventListener('click', (e) => {
                 let upvote = e.target;
@@ -71,6 +87,37 @@ function renderQuestions(questions) {
             });
         }
     }
+    $('.answerCount').each(function( i, element) {
+        //if not logged in, dont added listener to question with 0 answer
+        if (!loggedin == 'true') {
+            if ($(element).parent().data('anscount') == 0) {
+                return;
+            }
+        }
+        element.style.cursor = 'pointer';
+        $(element).click(function(event) {
+            let questionDiv = $(this).parent();
+            let answersDiv = questionDiv.next();
+            if (answersDiv && answersDiv.hasClass('answers')) {
+                //if answers div exist
+                if(answersDiv.is(":hidden")) {
+                    $(".answers").slideUp(0);
+                    $(answersDiv).slideDown('fast', function() {
+                        $('html').animate({scrollTop: $(questionDiv).offset().top-40 }, 100);
+                    });
+                } else {
+                    answersDiv.slideUp();
+                }
+            } else {
+                $(".answers").slideUp(0);
+                getAnswers(questionDiv[0], (answersDiv) => {
+                    $(answersDiv).slideDown('fast', function() {
+                        $('html').animate({scrollTop: $(questionDiv).offset().top-40 }, 100);
+                    });
+                });
+            }
+        });
+    });
 }
 
 var currentSpace;
@@ -78,7 +125,7 @@ var currentSearchWord;
 var currentOrder = 'time';
 var spaces = document.querySelectorAll('aside div');
 
-for (s of spaces) {
+for (let s of spaces) {
     s.addEventListener('click', (event) => {
         currentSpace = event.target.dataset.space
         getQuestions(currentOrder, currentSpace, currentSearchWord);

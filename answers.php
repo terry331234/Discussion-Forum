@@ -64,20 +64,23 @@ POST:
 
     function getReq($db) {
         $answerArray = array();
-        $order = 'time ASC';
+        $order = 'time ASC, aid ASC';
         if (!isset($_GET['qid'])) {
             throw new Exception('bad request');
             return;
         }
-        $query = "SELECT a.qid, a.aid, a.content, a.uid, "
+        $query = "SELECT a.qid, a.aid, a.content, a.uid, u.name, "
                 ."DATE_FORMAT(a.time, '%d-%m-%Y') AS time "
-                ."FROM answer a "
+                ."FROM answer a JOIN user u ON u.uid=a.uid "
                 ."WHERE a.qid='{$_GET['qid']}' "
                 ."ORDER BY ".$order.";";
 
         $result = $db->query($query);
         if (!$result) {
             throw new Exception('query error');
+        }
+        if (!$result->num_rows) {
+            throw new Exception('not found');
         }
         while ($answer = $result->fetch_object()) {
             array_push($answerArray, $answer);
@@ -92,7 +95,7 @@ POST:
         $uid = $_COOKIE['uid'];
         $time = date("Y-m-d");
 
-        $query = "SELECT MAX(a.aid) AS max FROM answer a WHERE a.qid='{$qid}' GROUP BY a.qid";
+        $query = "SELECT qid FROM question WHERE qid='{$qid}';";
         $result = $db->query($query);
         if (!$result) {
             throw new Exception('query error', $db->errno);
@@ -101,7 +104,18 @@ POST:
             $result->free_result();
             throw new Exception('not found');
         }
-        $aid = $result->fetch_object()->max;
+
+        $query = "SELECT MAX(a.aid) AS max FROM answer a WHERE a.qid='{$qid}' GROUP BY a.qid";
+        $result = $db->query($query);
+
+        if (!$result->num_rows) {
+            //no answer yet
+            $result->free_result();
+            $aid = 0;
+        } else {
+            $aid = $result->fetch_object()->max;
+        }
+
         $aid++;
 
         $query = "INSERT INTO answer VALUE ('{$aid}', '{$qid}', '{$content}', '{$uid}', '{$time}');";

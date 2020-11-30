@@ -2,7 +2,7 @@ body {
     max-width: 1500px;
     margin: auto;
     font-family: sans-serif;
-    background-color: lightgray;
+    background-color: #F5F7F8;
 }
 
 .card {
@@ -47,8 +47,11 @@ nav #logo {
 nav input {
     display: block;
     height: 1em;
+    width: 20em;
     margin-top: auto;
     margin-bottom: auto;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
 }
 
 .ml-auto {
@@ -83,11 +86,120 @@ nav input {
     margin: auto;
 }
 
-form {
+form.center {
     width: max-content;
     display: flex;
     flex-direction: column;
     margin: auto;
+}
+
+label.ask {
+    display: block;
+}
+
+.question, .answer {
+    margin-bottom: 1em;
+    padding: 0.5em;
+}
+
+.question .info, .answer .info {
+    color: grey;
+}
+
+.question .info strong, .answer .info strong{
+    color: black;
+}
+
+
+.question p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    word-break: break-word;
+    white-space: normal;
+}
+
+.question input:checked + p {
+    display: block;
+}
+
+.question input:checked ~ div {
+    display: none;
+}
+
+.question h4 {
+    font-size: larger;
+    margin-top: 0.5em;
+}
+
+.questions {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    margin-top: 1em;
+}
+
+.answers {
+    padding-left: 2em;
+}
+
+.space {
+    font-weight: bold;
+    border: 2px solid aqua;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+
+[role="button"], .button, button {
+    display: inline-flex;
+    justify-content: center;
+    color: black;
+    text-decoration-line: none;
+    cursor: pointer;
+    background-color: lightblue;
+    border: 0;
+    border-radius: 5px;
+    padding: 0.5em;
+    margin: 0.5em;
+    align-items: center;
+}
+
+.submit {
+    margin-top: 2em;
+}
+
+.upvoted {
+    color: red;
+}
+
+.upvote::before {
+    content: '▲';
+}
+
+.error {
+    color: red;
+    padding: 0.5em;
+}
+
+.hidden {
+    display: none;
+}
+
+textarea {
+    resize: none;
+    padding: 0.5em;
+    border-radius: 3px;
+}
+
+fieldset {
+    border: none;
+    padding: 0.5em;
+}
+
+legend {
+    margin-top: 0.5em;
 }
 
 .input-group {
@@ -100,46 +212,10 @@ form {
     margin-left: auto;
 }
 
-.question {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    padding: 0.5em;
+.container {
+    display: flex;
 }
 
-.questions {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-}
-
-.space {
-    font-weight: bold;
-    border: 2px solid aqua;
-    border-radius: 5px;
-    display: inline-block;
-    padding: 0.5em;
-    margin: 0.5em;
-}
-
-.button, button {
-    color: black;
-    text-decoration-line: none;
-    cursor: pointer;
-    background-color: aqua;
-    border: 0;
-    border-radius: 5px;
-    margin: 0.5em;
-    padding: 0.5em;
-}
-
-.submit {
-    margin-top: 2em;
-}
-
-.upvoted {
-    color: red;
-}
-
-.error {
-    color: red;
-    padding: 0.5em;
+.inlineRight {
+    margin-left: auto;
 }

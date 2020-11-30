@@ -34,7 +34,7 @@
   <div class="center-box">
     <div class="card">
       <h1>Login</h1>
-      <form action="" method="POST" class="align-center">
+      <form action="" method="POST" class="center">
         <div class="input-group">
           <label for="email">Email</label>
           <input type="text" id="email" name="email" value="<?php echo $email; ?>" pattern="^.+@.+\.+.+"  autofocus required>

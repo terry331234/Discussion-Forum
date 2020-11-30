@@ -65,7 +65,7 @@ POST:
         $upvoted = array();
         $questionArray = array();
         $uid = 0;
-        $order = [' time DESC '];
+        $order = [' time DESC ', ' qid ASC '];
         $filter = [];
         if ( !( isset($_GET['order']) || isset($_GET['qid']) )) {
             throw new Exception('bad request');
@@ -136,7 +136,13 @@ POST:
         $uid = $_COOKIE['uid'];
 
         $time = date("Y-m-d");
-        $query = "INSERT INTO question VALUE ('0', '{$space}', '{$title}', '{$content}', '{$time}', '{$uid}');";
+        if(isset($_POST['qid'])) {
+            $qid = $_POST['qid'];
+            $query = "UPDATE question SET title='{$title}', content='{$content}', space='{$space}' WHERE qid='{$qid}';";
+        } else {
+            $query = "INSERT INTO question VALUE ('0', '{$space}', '{$title}', '{$content}', '{$time}', '{$uid}');";
+        }
+
         $result = $db->query($query);
         if (!$result) {
             throw new Exception('query error', $db->errno);

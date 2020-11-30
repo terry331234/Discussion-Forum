@@ -38,7 +38,7 @@
             $row = $result->fetch_object();
             if ($row->password === $password) {
                 $return = 1;
-                setcookie("uid", "{$uid}", time()+3600);
+                setcookie("uid", "{$uid}", time()+7200);
             }
         }
         $result->free_result();

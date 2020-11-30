@@ -33,7 +33,7 @@
 <body class="center-text align-viewport-center">
   <div class="center-box card">
     <h1>Create an account</h1>
-    <form action="" method="POST" class="align-center">
+    <form action="" method="POST" class="center">
       <div class="input-group">
         <label for="email">Email</label>
         <input type="text" name="email" pattern="^.+@.+\.+.+" maxlength=50 autofocus required>

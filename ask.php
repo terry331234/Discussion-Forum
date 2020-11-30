@@ -51,38 +51,34 @@
 </script>
 <body class="align-viewport-center">
   <a id="back" class="button" href='index.php'>back</a>
-  <div class="center-text center-box card">
-    <h1>Ask your question</h1>
-    <form action="questions.php" method="POST" class="align-center">
-      <div class="input-group">
-        <label for="title">Title</label>
-        <input type="text" name="title" maxlength=300 autofocus required>
-      </div>
-      <div class="input-group">
-        <label for="space">Space</label>
-        <div>
-          <input type="radio" id="algo" name='space' value="Algorithm" required>
-          <label for="algo">Algorithm</label>
-
-          <input type="radio" id="ml" name='space' value="Machine Learning">
-          <label for="ml">Machine Learning</label>
-
-          <input type="radio" id="sys" name='space' value="System">
-          <label for="sys">System</label>
-
-          <input type="radio" id="js" name='space' value="JavaScript">
-          <label for="js">JavaScript</label>
-        </div>
-      </div>
-      <div class="input-group">
-        <label for="content">Content</label>
-        <textarea name='content' rows='6' required></textarea>
-      </div>
-      <button id="submit" type="submit">Submit</button>
+  <div class="center-box card">
+    <h1 class="center-text">Ask your question</h1>
+    <form action="questions.php" method="POST">
+        <fieldset>
+            <legend>Title</legend>
+            <input type="text" name="title" maxlength=300 size=70 autofocus required>
+        </fieldset>
+        <fieldset>
+            <legend>Space</legend>
+            <input type="radio" id="algo" name='space' value="Algorithm" required>
+            <label for="algo">Algorithm</label>
+        
+            <input type="radio" id="ml" name='space' value="Machine Learning">
+            <label for="ml">Machine Learning</label>
+        
+            <input type="radio" id="sys" name='space' value="System">
+            <label for="sys">System</label>
+        
+            <input type="radio" id="js" name='space' value="JavaScript">
+            <label for="js">JavaScript</label>
+        </fieldset>
+        <fieldset>
+            <legend>Content</legend>
+            <textarea name='content' rows='6' cols='70' maxlength=2000 required></textarea>
+        </fieldset>
+        <button type="submit">Submit</button>
     </form>
-    <div class="error">
-      <?php echo $msg; ?>
-    </div>
+    <div class="error"></div>
   </div>
 </body>
 </html>
