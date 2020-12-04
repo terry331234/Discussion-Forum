@@ -3,6 +3,7 @@ body {
     margin: auto;
     font-family: sans-serif;
     background-color: #F5F7F8;
+    overflow-y: scroll;
 }
 
 .card {
@@ -18,40 +19,48 @@ body {
 
 nav {
     display: flex;
+    flex-grow: ;
     background-color: aqua;
     position: sticky;
     top: 0;
+    margin-bottom: 0.5em;
 }
 
 a {
+    display: flex;
+    align-items: center;
     cursor: pointer;
     text-decoration-line: none;
     color: black;
 }
 
 nav a {
-    margin-right: 2em;
-    margin-left: 2em;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    padding: 0 2em 0 2em;
+}
+
+nav a:hover {
+    background-color: rgb(22, 206, 206);
 }
 
 nav #navAccount {
     display: flex;
 }
 
-nav #logo {
-    margin-left: 5px;
+nav img.logo {
+    width: 3em;
+    padding-left: 5px;
+}
+
+nav input:focus {
+    outline: none;
 }
 
 nav input {
     display: block;
-    height: 1em;
-    width: 20em;
-    margin-top: auto;
-    margin-bottom: auto;
-    padding-top: 0.3em;
-    padding-bottom: 0.3em;
+    flex-grow: 1;
+    min-width: 10em;
+    margin: 0.5em;
+    align-self: center;
 }
 
 .ml-auto {
@@ -82,7 +91,7 @@ nav input {
 }
 
 .center-box {
-    width: 60%;
+    width: 70%;
     margin: auto;
 }
 
@@ -91,6 +100,16 @@ form.center {
     display: flex;
     flex-direction: column;
     margin: auto;
+}
+
+input {
+    padding: 0.3em;
+    border-radius: 5px;
+}
+
+input[name='title'] {
+    max-width: 40em;
+    width: 95%;
 }
 
 label.ask {
@@ -134,9 +153,8 @@ label.ask {
 }
 
 .questions {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    margin-top: 1em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
 }
 
 .answers {
@@ -191,6 +209,8 @@ textarea {
     resize: none;
     padding: 0.5em;
     border-radius: 3px;
+    max-width: 40em;
+    width: 95%;
 }
 
 fieldset {
@@ -218,4 +238,87 @@ legend {
 
 .inlineRight {
     margin-left: auto;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+nav #mobilesearch {
+    display: none;
+}
+
+nav #links {
+    display: flex;
+    flex-grow: 1;
+}
+
+nav #navrow {
+    display: flex;
+}
+
+nav label {
+    display: none;
+}
+
+@media only screen and (max-width:800px) {
+    nav a {
+        padding: 0 1em 0 1em;
+    }
+}
+
+@media only screen and (max-width:580px) {
+    nav img.logo {
+        width: 2em;
+        padding-left: 5px;
+    }
+    nav #links {
+        flex-direction: column;
+        flex-grow: 1;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.25s ease-out;
+    }
+    nav #links input {
+        display: none;
+    }
+    nav #mobilesearch {
+        display: block;
+    }
+    nav #links a {
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+    }
+    nav {
+        flex-direction: column;
+    }
+    nav label {
+        font-size: x-large;
+        display: flex;
+        padding: 0 1em 0 1em;
+        align-items: center;
+        cursor: pointer;
+    }
+    nav #expand:checked ~ #links {
+        max-height: 500px;
+        transition: max-height 0.25s ease-in;
+    }
+
+    h4.space {
+        display: block;
+        margin: 0;
+    }
+    .answers {
+        padding-left: 5px;
+    }
+}
+
+@media only screen and (max-width:460px) {
+    nav input {
+        display: none;
+    }
+    nav button {
+        display: inline-block;
+        margin: auto;
+    }
 }

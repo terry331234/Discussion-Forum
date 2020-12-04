@@ -56,25 +56,30 @@
     <form action="questions.php" method="POST">
         <fieldset>
             <legend>Title</legend>
-            <input type="text" name="title" maxlength=300 size=70 autofocus required>
+            <input type="text" name="title" maxlength=300 autofocus required>
         </fieldset>
         <fieldset>
             <legend>Space</legend>
-            <input type="radio" id="algo" name='space' value="Algorithm" required>
-            <label for="algo">Algorithm</label>
-        
-            <input type="radio" id="ml" name='space' value="Machine Learning">
-            <label for="ml">Machine Learning</label>
-        
-            <input type="radio" id="sys" name='space' value="System">
-            <label for="sys">System</label>
-        
-            <input type="radio" id="js" name='space' value="JavaScript">
-            <label for="js">JavaScript</label>
+            <span class="nowrap">
+              <input type="radio" id="algo" name='space' value="Algorithm" required>
+              <label for="algo">Algorithm</label>
+            </span>
+            <span class="nowrap">
+              <input type="radio" id="ml" name='space' value="Machine Learning">
+              <label for="ml">Machine Learning</label>
+            </span>
+            <span class="nowrap">
+              <input type="radio" id="sys" name='space' value="System">
+              <label for="sys">System</label>
+            </span>
+            <span class="nowrap">
+              <input type="radio" id="js" name='space' value="JavaScript">
+              <label for="js">JavaScript</label>
+            </span>
         </fieldset>
         <fieldset>
             <legend>Content</legend>
-            <textarea name='content' rows='6' cols='70' maxlength=2000 required></textarea>
+            <textarea name='content' rows='6' maxlength=2000 required></textarea>
         </fieldset>
         <button type="submit">Submit</button>
     </form>

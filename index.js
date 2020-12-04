@@ -89,8 +89,8 @@ function renderQuestions(questions) {
     }
     $('.answerCount').each(function( i, element) {
         //if not logged in, dont added listener to question with 0 answer
-        if (!loggedin == 'true') {
-            if ($(element).parent().data('anscount') == 0) {
+        if (!(loggedin == 'true')) {
+            if (parseInt($(element).parent().data('anscount')) == 0) {
                 return;
             }
         }
@@ -103,7 +103,7 @@ function renderQuestions(questions) {
                 if(answersDiv.is(":hidden")) {
                     $(".answers").slideUp(0);
                     $(answersDiv).slideDown('fast', function() {
-                        $('html').animate({scrollTop: $(questionDiv).offset().top-40 }, 100);
+                        $('html').animate({scrollTop: $(questionDiv).offset().top-45 }, 100);
                     });
                 } else {
                     answersDiv.slideUp();
@@ -112,7 +112,7 @@ function renderQuestions(questions) {
                 $(".answers").slideUp(0);
                 getAnswers(questionDiv[0], (answersDiv) => {
                     $(answersDiv).slideDown('fast', function() {
-                        $('html').animate({scrollTop: $(questionDiv).offset().top-40 }, 100);
+                        $('html').animate({scrollTop: $(questionDiv).offset().top-45 }, 100);
                     });
                 });
             }
@@ -134,10 +134,16 @@ for (let s of spaces) {
 
 document.getElementById('hot').addEventListener('click', () => {
     currentOrder = 'up';
+    $('#expand').prop('checked', false);
     getQuestions(currentOrder, currentSpace, currentSearchWord);
 });
 
 document.getElementById('search').addEventListener('input', (event) => {
+    currentSearchWord = event.target.value;
+    getQuestions(currentOrder, currentSpace, currentSearchWord);
+});
+
+document.getElementById('mobilesearch').addEventListener('input', (event) => {
     currentSearchWord = event.target.value;
     getQuestions(currentOrder, currentSpace, currentSearchWord);
 });

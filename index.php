@@ -22,6 +22,7 @@
 ?>
     <nav></nav>
     <aside>
+        <input type="checkbox">
         <div data-space="Algorithm">Algorithm</div>
         <div data-space="Machine Learning">Machine Learning</div>
         <div data-space="System">System</div>
@@ -30,7 +31,7 @@
     <main class='questions'>
     <?php
     if (isset($_COOKIE["uid"])) {
-        echo "<a id='askButton' role='button' href='ask.php'>Ask Question</a>";
+        echo "<a class='float-r' role='button' href='ask.php'>Ask Question</a>";
         echo "
         <div class='question card'>
             <h4 id='user'>{$name}</h4>

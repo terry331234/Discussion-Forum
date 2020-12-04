@@ -7,6 +7,12 @@ aside {
     color: #29627e;
     display: flex;
     flex-direction: column;
+    margin-right: -0.5em;
+    margin-top: -1em;
+}
+
+aside input {
+    visibility: hidden;
 }
 
 aside div {
@@ -14,11 +20,36 @@ aside div {
     cursor: pointer;
 }
 
-main {
+aside div:hover {
+    background-color: rgba(128, 128, 128, 0.479);
+}
+
+main.questions {
     margin-left: 15%;
 }
 
-#askButton {
-    
-    float: right;
+@media only screen and (max-width:580px) {
+    nav img.logo {
+        width: 3em;
+        padding-left: 5px;
+    }
+    aside input {
+        visibility: visible;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    aside input:checked ~ div  {
+        transform: translate(-5em);
+    }
+    aside div {
+        transform: translate(-5em);
+    }
+    aside {
+        width: fit-content;
+        transform: translate(-5em);
+    }
+    main.questions {
+        margin-left: 0.5em;
+    }
 }
