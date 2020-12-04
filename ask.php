@@ -10,6 +10,7 @@
   <meta name="viewport" content="width=device-width">
   <title>Ask! - Ask Question</title>
   <link rel="stylesheet" href="css/global.css">
+  <link rel="shortcut icon" href="favicon.ico">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 </head>
 <style>

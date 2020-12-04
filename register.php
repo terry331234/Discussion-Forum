@@ -26,6 +26,7 @@
   <meta name="viewport" content="width=device-width">
   <title>Ask! - Register</title>
   <link rel="stylesheet" href="css/global.css">
+  <link rel="shortcut icon" href="favicon.ico">
 </head>
 <style>
 

@@ -35,7 +35,7 @@ function renderQuestions(questions) {
                               <input type="checkbox" id="showmore${q.qid}" class="hidden">
                               <p>${q.content}</p>\
                               <div class='container'><label for="showmore${q.qid}" role="button" class="inlineRight">read more</label></div>\
-                              <span class='upvote pl-1em${upvoted}' data-qid='${q.qid}'>Upvote <span>${q.upCount}</span></span><span class='pl-1em answerCount'>Answers ${q.ansCount}</span>`;
+                              <span class='upvote pl-1em${upvoted}'>Upvote <span>${q.upCount}</span></span><span class='pl-1em answerCount'>Answers ${q.ansCount}</span>`;
 
         question.setAttribute('data-anscount', q.ansCount);
         questionsDiv.append(question);
@@ -65,13 +65,13 @@ function renderQuestions(questions) {
                     action = 'add';
                     offset = 1;
                 }
-
+                let qid = $(upvote).parent().data('qid');
                 fetch('questions.php', {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/x-www-form-urlencoded',
                     },
-                    body: `qid=${upvote.dataset.qid}&action=${action}`,
+                    body: `qid=${qid}&action=${action}`,
                   }).then( response => {
                     if (!response.ok) {
                         alert("Failed to record upvote change!Try reloading the page.");

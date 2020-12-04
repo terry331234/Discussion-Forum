@@ -9,6 +9,7 @@
   <script src="js/answers.js" type='module'></script>
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/index.css">
+  <link rel="shortcut icon" href="favicon.ico">
 </head> 
 <?php
     ini_set('display_errors', 0);
