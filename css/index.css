@@ -3,12 +3,11 @@ aside {
     position: sticky;
     float: left;
     left: 0;
-    top: 2.5em;
+    top: 4rem;
     color: #29627e;
     display: flex;
     flex-direction: column;
-    margin-right: -0.5em;
-    margin-top: -1em;
+    margin-right: -0.5rem;
 }
 
 aside input {
@@ -33,8 +32,19 @@ main.questions {
     display: none;
 }
 
+@media only screen and (max-width:800px) {
+    nav a {
+        padding: 0 1em 0 1em;
+        font-size: medium;
+    }
+    aside {
+        top: 3.5rem;
+    }
+}
+
 @media only screen and (max-width:580px) {
     aside {
+        margin-top: -0.5rem;
         max-width: 0;
         width: 25%;
         opacity: 0;

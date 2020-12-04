@@ -69,17 +69,22 @@ function renderQuestion(q) {
                 </fieldset>
                 <fieldset>
                     <legend>Space</legend>
+                    <span class="nowrap">
                     <input type="radio" id="algo" name='space' value="Algorithm" required>
                     <label for="algo">Algorithm</label>
-        
+                    </span>
+                    <span class="nowrap">
                     <input type="radio" id="ml" name='space' value="Machine Learning">
                     <label for="ml">Machine Learning</label>
-        
+                    </span>
+                    <span class="nowrap">
                     <input type="radio" id="sys" name='space' value="System">
                     <label for="sys">System</label>
-        
+                    </span>
+                    <span class="nowrap">
                     <input type="radio" id="js" name='space' value="Javascript">
                     <label for="js">Javascript</label>
+                    </span>
                 </fieldset>
                 <fieldset>
                     <legend>Content</legend>

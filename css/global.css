@@ -19,7 +19,6 @@ body {
 
 nav {
     display: flex;
-    flex-grow: ;
     background-color: aqua;
     position: sticky;
     top: 0;
@@ -27,7 +26,6 @@ nav {
 }
 
 a {
-    display: flex;
     align-items: center;
     cursor: pointer;
     text-decoration-line: none;
@@ -35,7 +33,9 @@ a {
 }
 
 nav a {
-    padding: 0 2em 0 2em;
+    display: flex;
+    padding: 0 2rem 0 2rem;
+    font-size: larger;
 }
 
 nav a:hover {
@@ -48,6 +48,16 @@ nav #navAccount {
 
 nav img.logo {
     width: 3em;
+    padding-left: 5px;
+}
+
+nav a.logo {
+    padding-left: 5px;
+}
+
+nav a.logo::after {
+    content: "Ask!";
+    font-size: larger;
     padding-left: 5px;
 }
 
@@ -114,10 +124,39 @@ nav label {
 }
 
 form.center {
-    width: max-content;
+    max-width: max-content;
     display: flex;
     flex-direction: column;
     margin: auto;
+}
+
+textarea {
+    resize: none;
+    padding: 0.5em;
+    border-radius: 3px;
+    max-width: 40em;
+    width: 95%;
+}
+
+fieldset {
+    border: none;
+    padding: 0.5em;
+}
+
+legend {
+    font-weight: bold;
+    margin-top: 0.5em;
+}
+
+.input-group {
+    display: flex;
+    margin-top: 0.5em;
+}
+
+.input-group label {
+    margin-left: auto;
+    margin-right: 1em;
+    text-align: left;
 }
 
 input {
@@ -146,7 +185,6 @@ label.ask {
 .question .info strong, .answer .info strong{
     color: black;
 }
-
 
 .question p {
     display: -webkit-box;
@@ -200,10 +238,15 @@ label.ask {
     padding: 0.5em;
     margin: 0.5em;
     align-items: center;
+    user-select: none;
 }
 
 .submit {
     margin-top: 2em;
+}
+
+.upvote, .answerCount {
+    user-select: none;
 }
 
 .upvoted {
@@ -223,33 +266,6 @@ label.ask {
     display: none;
 }
 
-textarea {
-    resize: none;
-    padding: 0.5em;
-    border-radius: 3px;
-    max-width: 40em;
-    width: 95%;
-}
-
-fieldset {
-    border: none;
-    padding: 0.5em;
-}
-
-legend {
-    margin-top: 0.5em;
-}
-
-.input-group {
-    display: flex;
-    margin-top: 0.5em;
-}
-
-.input-group label {
-    padding-right: 1em;
-    margin-left: auto;
-}
-
 .container {
     display: flex;
 }
@@ -265,6 +281,11 @@ legend {
 @media only screen and (max-width:800px) {
     nav a {
         padding: 0 1em 0 1em;
+        font-size: medium;
+    }
+    .center-box {
+        width: 90%;
+        margin: auto;
     }
 }
 
@@ -275,6 +296,11 @@ legend {
     nav img.logo {
         width: 3em;
         padding-left: 5px;
+    }
+    nav a.logo::after {
+        content: "";
+        font-size: larger;
+        padding-left: 0;
     }
     nav #links {
         flex-direction: column;
@@ -292,13 +318,13 @@ legend {
     }
     nav #links a {
         font-size: larger;
-        padding-top: 0.5em;
-        padding-bottom: 0.5em;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
     }
     nav label {
         font-size: xx-large;
         display: flex;
-        padding: 0 1em 0 1em;
+        padding: 0 1rem 0 1rem;
         align-items: center;
         cursor: pointer;
     }
@@ -309,7 +335,7 @@ legend {
 
     h4.space {
         display: block;
-        margin: 0;
+        margin: 0 0 0.5em 0;
     }
     .answers {
         padding-left: 5px;
@@ -324,8 +350,10 @@ legend {
         display: inline-block;
         margin: auto;
     }
-    .center-box {
-        width: 90%;
-        margin: auto;
+    .input-group {
+        flex-direction: column;
+    }
+    .input-group label {
+        margin-left: 0;
     }
 }

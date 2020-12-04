@@ -64,7 +64,7 @@ POST:
 
     function getReq($db) {
         $answerArray = array();
-        $order = 'time ASC, aid ASC';
+        $order = 'time DESC, aid ASC';
         if (!isset($_GET['qid'])) {
             throw new Exception('bad request');
             return;
