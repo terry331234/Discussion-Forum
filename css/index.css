@@ -26,28 +26,36 @@ aside div:hover {
 
 main.questions {
     margin-left: 15%;
+    transition: margin-left 0.1s ease;
+}
+
+#showSpaceBtn {
+    display: none;
 }
 
 @media only screen and (max-width:580px) {
-    nav img.logo {
-        width: 3em;
-        padding-left: 5px;
-    }
-    aside input {
-        visibility: visible;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-    aside input:checked ~ div  {
-        transform: translate(-5em);
+    aside {
+        max-width: 0;
+        width: 25%;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-width 0.1s ease-out, opacity 0.1s ease-in;;
     }
     aside div {
-        transform: translate(-5em);
+        padding: 0.5em;
     }
-    aside {
-        width: fit-content;
-        transform: translate(-5em);
+    #showSpaceBtn {
+        display: inline-block;
+        margin-top: 0;
+    }
+    #showSpace:checked ~ aside  {
+        max-width: 25%;
+        opacity: 1;
+        transition: max-width 0.1s ease, opacity 0.25s ease-in;
+    }
+    #showSpace:checked ~ main  {
+        margin-left: 25%;
+        transition: margin-left 0.1s ease;
     }
     main.questions {
         margin-left: 0.5em;

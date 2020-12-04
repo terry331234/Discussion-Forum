@@ -63,6 +63,24 @@ nav input {
     align-self: center;
 }
 
+nav #mobilesearch {
+    display: none;
+}
+
+nav #links {
+    display: flex;
+    flex-grow: 1;
+}
+
+nav #navrow {
+    display: flex;
+}
+
+nav label {
+    display: none;
+    user-select: none;
+}
+
 .ml-auto {
     margin-left: auto;
 }
@@ -244,23 +262,6 @@ legend {
     white-space: nowrap;
 }
 
-nav #mobilesearch {
-    display: none;
-}
-
-nav #links {
-    display: flex;
-    flex-grow: 1;
-}
-
-nav #navrow {
-    display: flex;
-}
-
-nav label {
-    display: none;
-}
-
 @media only screen and (max-width:800px) {
     nav a {
         padding: 0 1em 0 1em;
@@ -268,8 +269,11 @@ nav label {
 }
 
 @media only screen and (max-width:580px) {
+    nav {
+        flex-direction: column;
+    }
     nav img.logo {
-        width: 2em;
+        width: 3em;
         padding-left: 5px;
     }
     nav #links {
@@ -284,16 +288,15 @@ nav label {
     }
     nav #mobilesearch {
         display: block;
+        height: 2em;
     }
     nav #links a {
+        font-size: larger;
         padding-top: 0.5em;
         padding-bottom: 0.5em;
     }
-    nav {
-        flex-direction: column;
-    }
     nav label {
-        font-size: x-large;
+        font-size: xx-large;
         display: flex;
         padding: 0 1em 0 1em;
         align-items: center;
@@ -319,6 +322,10 @@ nav label {
     }
     nav button {
         display: inline-block;
+        margin: auto;
+    }
+    .center-box {
+        width: 90%;
         margin: auto;
     }
 }

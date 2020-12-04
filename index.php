@@ -21,8 +21,9 @@
     }
 ?>
     <nav></nav>
+    <input id='showSpace' class='hidden' type="checkbox">
+    <label for='showSpace' id='showSpaceBtn' role='button'>Show Spaces</label>
     <aside>
-        <input type="checkbox">
         <div data-space="Algorithm">Algorithm</div>
         <div data-space="Machine Learning">Machine Learning</div>
         <div data-space="System">System</div>
